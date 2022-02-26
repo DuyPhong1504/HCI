@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                       HomeButton(
                         iconn: Icons.event_available,
                         title: 'Events',
-                        routeName: '',
+                        routeName: '/event',
                       ),
                       HomeButton(
                         iconn: Icons.room_outlined,
