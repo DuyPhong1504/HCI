@@ -12,7 +12,8 @@ class CustomAppBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(Icons.nightlight_round_outlined),
+            const Icon(Icons.nightlight_round_outlined,
+                color: Colors.amberAccent),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +33,9 @@ class CustomAppBar extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: const [
-            Icon(Icons.signal_wifi_4_bar),
+            Icon(
+              Icons.signal_wifi_4_bar,
+            ),
             SizedBox(
               width: 15,
             ),

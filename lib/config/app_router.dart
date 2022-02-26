@@ -12,6 +12,8 @@ class AppRouter {
         return HomeScreen.route();
       case ServiceScreen.routeName:
         return ServiceScreen.route();
+        case NavRailScreen.routeName:
+        return NavRailScreen.route();
 
       default:
         return _errorRoute();

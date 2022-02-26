@@ -44,17 +44,36 @@ class HomeScreen extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: const [
-                      HomeButton(iconn: Icons.tv, title: 'TV', routeName: ''),
-                      HomeButton(iconn: Icons.room_service, title: 'Services', routeName: '/service'),
-                      HomeButton(iconn: Icons.event_available, title: 'Events',routeName: ''),
                       HomeButton(
-                          iconn: Icons.room_outlined,
-                          title: 'Room Information', routeName: ''),
+                        iconn: Icons.tv,
+                        title: 'TV',
+                        routeName: '',
+                      ),
                       HomeButton(
-                          iconn: Icons.hotel, title: 'Hotel Information', routeName: ''),
+                        iconn: Icons.room_service,
+                        title: 'Services',
+                        routeName: '/service',
+                      ),
                       HomeButton(
-                          iconn: Icons.health_and_safety,
-                          title: 'Health Declaration', routeName: ''),
+                        iconn: Icons.event_available,
+                        title: 'Events',
+                        routeName: '',
+                      ),
+                      HomeButton(
+                        iconn: Icons.room_outlined,
+                        title: 'Room Information',
+                        routeName: '',
+                      ),
+                      HomeButton(
+                        iconn: Icons.hotel,
+                        title: 'Hotel Information',
+                        routeName: '',
+                      ),
+                      HomeButton(
+                        iconn: Icons.health_and_safety,
+                        title: 'Health Declaration',
+                        routeName: '',
+                      ),
                     ],
                   ),
                 ),
