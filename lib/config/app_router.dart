@@ -14,6 +14,8 @@ class AppRouter {
         return ServiceScreen.route();
       case EventScreen.routeName:
         return EventScreen.route();
+      case HotelScreen.routeName:
+        return HotelScreen.route();
       case NavRailScreen.routeName:
         return NavRailScreen.route();
 

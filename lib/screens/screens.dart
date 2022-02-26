@@ -5,3 +5,4 @@ export 'food_screen.dart';
 export 'drink_screen.dart';
 export 'room_service_screen.dart';
 export 'event_screen.dart';
+export 'hotel_screen.dart';
