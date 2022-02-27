@@ -18,6 +18,8 @@ class AppRouter {
         return HotelScreen.route();
       case NavRailScreen.routeName:
         return NavRailScreen.route();
+      case HealthScreen.routeName:
+        return HealthScreen.route();
 
       default:
         return _errorRoute();

@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                       HomeButton(
                         iconn: Icons.health_and_safety,
                         title: 'Health Declaration',
-                        routeName: '',
+                        routeName: '/health',
                       ),
                     ],
                   ),
