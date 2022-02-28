@@ -8,7 +8,7 @@ class DrinkScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("Food"),
+        title: Text("Drink"),
       ),
       body: Container(
         decoration: BoxDecoration(

@@ -19,7 +19,6 @@ class HotelScreen extends StatelessWidget {
     return Stack(
       children: [
         MaterialApp(
-          title: 'welcome',
           home: Scaffold(
             appBar: AppBar(
               centerTitle: true,
@@ -45,10 +44,10 @@ class HotelScreen extends StatelessWidget {
             body: Column(
               children: [
                 Image.network(
-                    'https://www.gannett-cdn.com/-mm-/c6ce345dd3cc67c30388965835e2347ef87cfcc7/c=0-366-2700-1885/local/-/media/2020/03/03/USATODAY/usatsports/MotleyFool-TMOT-b9d6657b-hotel-room.jpg?width=2700&height=1519&fit=crop&format=pjpg&auto=webp',
+                    'https://cdn.britannica.com/96/115096-050-5AFDAF5D/Bellagio-Hotel-Casino-Las-Vegas.jpg',
                     width: 1920,
                     height: 240,
-                    fit: BoxFit.cover),
+                    fit: BoxFit.fill),
                 titleSection,
                 textSection
               ],
@@ -73,26 +72,23 @@ class HotelScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 8),
                 child: const Text(
                   'Oeschinen Lake Campground',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Text(
                 'Kandersteg, Switzerland',
-                style: TextStyle(
-                  color: Colors.grey[500],
-                ),
+                style: TextStyle(color: Colors.grey[500], fontSize: 20),
               ),
             ],
           ),
         ),
         /*3*/
+        const Text('4'),
         Icon(
           Icons.star,
           color: Colors.red[500],
+          size: 40,
         ),
-        const Text('41'),
       ],
     ),
   );

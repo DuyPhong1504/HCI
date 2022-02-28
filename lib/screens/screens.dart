@@ -7,3 +7,4 @@ export 'room_service_screen.dart';
 export 'event_screen.dart';
 export 'hotel_screen.dart';
 export 'health_screen.dart';
+export 'room_screen.dart';

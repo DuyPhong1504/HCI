@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                       HomeButton(
                         iconn: Icons.room_outlined,
                         title: 'Room Information',
-                        routeName: '/',
+                        routeName: '/room',
                       ),
                       HomeButton(
                         iconn: Icons.hotel,

@@ -8,7 +8,7 @@ class RoomServiceScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("Food"),
+        title: Text("Service Room"),
       ),
       body: Container(
         decoration: BoxDecoration(
