@@ -2,57 +2,119 @@ import 'package:flutter/material.dart';
 
 import '../widgets/widgets.dart';
 
-class FoodScreen extends StatelessWidget {
+class FoodModel {
+  int count;
+  String? id;
+  String? name;
+  String? image;
+
+  FoodModel(
+      {required this.count,
+      required this.id,
+      required this.name,
+      required this.image});
+}
+
+class FoodScreen extends StatefulWidget {
   const FoodScreen({Key? key}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() => _FoodScreen();
+}
+
+class _FoodScreen extends State<FoodScreen> {
+  int count = 0;
+  List<FoodModel> list = [
+    FoodModel(
+        count: 0,
+        id: "1",
+        name: "Hamburger",
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/social-app-831ac.appspot.com/o/tu-vung-tieng-anh-do-an-nhanh.jpg?alt=media&token=43561e1b-643d-4f13-86a3-98bed79d247e"),
+    FoodModel(
+        count: 0,
+        id: "2",
+        name: "Pizza",
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/social-app-831ac.appspot.com/o/image.webp?alt=media&token=892556e6-41c7-4826-bf1d-5b52ff7b6f16"),
+    FoodModel(
+        count: 0,
+        id: "3",
+        name: "Beefsteak",
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/social-app-831ac.appspot.com/o/photo-1504674900247-0877df9cc836.jpg?alt=media&token=0e396ac6-4c38-4747-a0c3-2e4bf780e221"),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text("Food"),
-      ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-              'https://www.popsci.com/uploads/2020/06/05/3NIEQB3SFVCMNHH6MHZ42FO6PA.jpg?auto=webp',
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.6), BlendMode.exclusion),
+              image: NetworkImage(
+                'https://firebasestorage.googleapis.com/v0/b/twe-mobile.appspot.com/o/images%2F3NIEQB3SFVCMNHH6MHZ42FO6PA.webp?alt=media&token=10a0379a-7144-47f7-9289-2729846bc9b3',
+              ),
+              fit: BoxFit.cover,
             ),
-            fit: BoxFit.cover,
           ),
-        ),
-        height: 1080,
-        child: ListView(
-            padding: EdgeInsets.only(top: 100),
-            scrollDirection: Axis.horizontal,
+          // height: MediaQuery.of(context).size.height,
+          child: Stack(
             children: [
-              buildCard(
-                  'https://ieltscaptoc.com.vn/wp-content/uploads/2021/04/tu-vung-tieng-anh-do-an-nhanh.jpg'),
-              SizedBox(width: 15),
-              buildCard(
-                  'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2022%2F02%2F11%2Fvalentines-food-deals-2.jpg&q=60'),
-              SizedBox(width: 15),
-              buildCard(
-                  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHZpZXRuYW1lc2UlMjBmb29kfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-              SizedBox(width: 15),
-              buildCard(
-                  'https://media-cdn.tripadvisor.com/media/photo-s/17/f5/39/f7/fooood-at-the-food-department.jpg'),
-              SizedBox(width: 15),
-              buildCard(
-                  'https://i0.wp.com/post.healthline.com/wp-content/uploads/2022/02/salmon-on-plate-sunshine-1296x728-header.jpg?w=1155&h=1528'),
-              SizedBox(width: 15),
-            ]),
-      ),
+              ListView(
+                  padding: EdgeInsets.only(
+                    top: 130,
+                    bottom: 130,
+                  ),
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    SizedBox(width: 15),
+                    if (list.length > 0)
+                      ...list
+                          .map(
+                            (e) => FlatButton(
+                              color: Colors.transparent,
+                              onPressed: () {
+                                int index = list.indexOf(e);
+                                setState(() {
+                                  list[index].count += 1;
+                                });
+                              },
+                              child: buildCard(e.image!, e.name!, e.count!),
+                            ),
+                          )
+                          .toList()
+                  ]),
+              Positioned(
+                  bottom: 30,
+                  right: 30,
+                  child: Container(
+                    height: 50,
+                    width: 150,
+                    child: FlatButton(
+                      color: Colors.black45,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(width: 1, color: Colors.white)),
+                      onPressed: () {},
+                      child: Text(
+                        "Tiếp theo",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ))
+            ],
+          )),
     );
   }
 
-  Widget buildCard(String img) => Container(
-      width: 400,
-      height: 400,
-      child: Column(
+  Widget buildCard(String img, String food, int count) => Container(
+          // width: 400,
+          // height: 400,
+          child: Stack(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(50.0),
+            borderRadius: BorderRadius.circular(10.0),
             child: Image.network(
               img,
               fit: BoxFit.cover,
@@ -60,19 +122,67 @@ class FoodScreen extends StatelessWidget {
               width: 400,
             ),
           ),
-          Text(
-            '\$100',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.red,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          FloatingActionButton(
-            backgroundColor: Colors.green,
-            onPressed: () {},
-            child: Icon(Icons.add),
-          ),
+          Positioned(
+              bottom: 0,
+              right: 0,
+              child: Container(
+                padding: EdgeInsets.only(right: 20),
+                alignment: Alignment.centerRight,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                ),
+                width: 400,
+                height: 50,
+                child: Text(
+                  '\$100',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Positioned(
+              bottom: 5,
+              left: 20,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                width: 400,
+                height: 40,
+                child: Text(
+                  food,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Positioned(
+              top: 0,
+              right: 15,
+              child: Container(
+                alignment: Alignment.centerRight,
+                width: 400,
+                height: 40,
+                child: Text(
+                  "x${count}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ))
+          // FloatingActionButton(
+          //   backgroundColor: Colors.green,
+          //   onPressed: () {},
+          //   child: Icon(Icons.add),
+          // ),
         ],
       ));
 }

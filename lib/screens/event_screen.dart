@@ -16,9 +16,9 @@ class EventScreen extends StatelessWidget {
   final List<String> imageList = [
     "https://bizweb.dktcdn.net/100/361/993/files/event.jpg?v=1570112116671",
     "https://jobsgo.vn/blog/wp-content/uploads/2021/08/events-la-gi-4.jpg",
-    "https://wifisukien.info/wp-content/uploads/2019/12/wifi-su-kien-ha-noi-2.jpg",
+    // "https://wifisukien.info/wp-content/uploads/2019/12/wifi-su-kien-ha-noi-2.jpg",
     "https://www.apple.com/v/apple-events/home/r/images/june-2021/meta/og__fodnljjkwl6y.jpg?202106280044",
-    "https://miceeventmanagementcompany.files.wordpress.com/2013/12/event-flooring-05.jpg",
+    // "https://miceeventmanagementcompany.files.wordpress.com/2013/12/event-flooring-05.jpg",
   ];
 
   EventScreen({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class EventScreen extends StatelessWidget {
             options: CarouselOptions(
               enlargeCenterPage: true,
               enableInfiniteScroll: false,
-              autoPlay: true,
+              autoPlay: false,
             ),
             items: imageList
                 .map((e) => ClipRRect(

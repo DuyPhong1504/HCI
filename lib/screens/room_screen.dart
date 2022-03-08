@@ -18,13 +18,13 @@ class RoomScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Positioned.fill(
-          child: Image(
-            image: NetworkImage(
-                'https://img2.goodfon.com/wallpaper/nbig/9/ce/background-water-voda-fon.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        // const Positioned.fill(
+        //   child: Image(
+        //     image: NetworkImage(
+        //         'https://img2.goodfon.com/wallpaper/nbig/9/ce/background-water-voda-fon.jpg'),
+        //     fit: BoxFit.cover,
+        //   ),
+        // ),
         Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(

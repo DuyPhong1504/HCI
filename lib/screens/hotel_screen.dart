@@ -21,8 +21,8 @@ class HotelScreen extends StatelessWidget {
         MaterialApp(
           home: Scaffold(
             appBar: AppBar(
-              centerTitle: true,
               backgroundColor: Colors.transparent,
+              centerTitle: true,
               elevation: 0,
               leading: IconButton(
                 onPressed: () {
@@ -46,8 +46,8 @@ class HotelScreen extends StatelessWidget {
                 Image.network(
                     'https://cdn.britannica.com/96/115096-050-5AFDAF5D/Bellagio-Hotel-Casino-Las-Vegas.jpg',
                     width: 1920,
-                    height: 240,
-                    fit: BoxFit.fill),
+                    height: 300,
+                    fit: BoxFit.cover),
                 titleSection,
                 textSection
               ],
@@ -59,7 +59,7 @@ class HotelScreen extends StatelessWidget {
   }
 
   Widget titleSection = Container(
-    padding: const EdgeInsets.all(32),
+    padding: const EdgeInsets.all(16),
     child: Row(
       children: [
         Expanded(
@@ -69,7 +69,7 @@ class HotelScreen extends StatelessWidget {
             children: [
               /*2*/
               Container(
-                padding: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.only(bottom: 0),
                 child: const Text(
                   'Oeschinen Lake Campground',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -83,17 +83,36 @@ class HotelScreen extends StatelessWidget {
           ),
         ),
         /*3*/
-        const Text('4'),
+
         Icon(
           Icons.star,
-          color: Colors.red[500],
+          color: Colors.amber,
           size: 40,
+        ),
+        Icon(
+          Icons.star,
+          color: Colors.amber,
+          size: 40,
+        ),
+        Icon(
+          Icons.star,
+          color: Colors.amber,
+          size: 40,
+        ),
+        Icon(
+          Icons.star,
+          color: Colors.amber,
+          size: 40,
+        ),
+        const Text(
+          '(4.0)',
+          style: TextStyle(fontSize: 24),
         ),
       ],
     ),
   );
   Widget textSection = const Padding(
-    padding: EdgeInsets.all(32),
+    padding: EdgeInsets.all(16),
     child: Text(
       'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
       'Alps. Situated 1,578 meters above sea level, it is one of the '

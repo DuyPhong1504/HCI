@@ -17,22 +17,24 @@ class ServiceTab extends StatelessWidget {
         Navigator.pushNamed(context, '/navrail');
       },
       focusColor: Colors.blueGrey,
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
       child: Container(
-        height: double.infinity,
-        width: 200,
-        margin: const EdgeInsets.all(15.0),
+        height: 200,
+        width: 300,
+        margin: const EdgeInsets.all(10.0),
         padding: const EdgeInsets.all(3.0),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
           children: [
             Positioned.fill(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(10),
                 child: Image(
+                  colorBlendMode: BlendMode.modulate,
+                  color: Colors.white.withOpacity(0.9),
                   image: NetworkImage(imgUrl),
                   fit: BoxFit.cover,
                 ),
@@ -47,7 +49,7 @@ class ServiceTab extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey),
+                      color: Colors.black87),
                 ),
               ),
             )
