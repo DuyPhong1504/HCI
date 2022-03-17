@@ -21,88 +21,99 @@ class TvScreen extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black87,
       ),
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.black87,
-          elevation: 0,
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search_rounded,
-                color: Colors.redAccent,
-              ),
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  TvCategoryText(title: 'Popular'),
-                  TvCategoryText(title: 'Film'),
-                  TvCategoryText(title: 'Cartoon'),
-                  TvCategoryText(title: 'Live'),
-                ],
-              ),
-              const SizedBox(
-                width: 300,
-                height: 350,
-                child: TvCarouselSlider(),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Popular',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .copyWith(color: Colors.red),
-              ),
-              const Divider(
-                indent: 400,
-                endIndent: 400,
-                color: Colors.red,
-              ),
-              FilmList(
-                films: Film.films.where((film) => film.isPopular).toList(),
-              ),
-              Text(
-                'Film',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .copyWith(color: Colors.red),
-              ),
-              const Divider(
-                indent: 400,
-                endIndent: 400,
-                color: Colors.red,
-              ),
-              FilmList(
-                films: Film.films.where((film) => !film.isCartoon).toList(),
-              ),
-              Text(
-                'Cartoon',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .copyWith(color: Colors.red),
-              ),
-              const Divider(
-                indent: 400,
-                endIndent: 400,
-                color: Colors.red,
-              ),
-              FilmList(
-                films: Film.films.where((film) => film.isCartoon).toList(),
+          appBar: AppBar(
+            automaticallyImplyLeading: true,
+            backgroundColor: Colors.black87,
+            elevation: 0,
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.search_rounded,
+                  color: Colors.redAccent,
+                ),
               ),
             ],
           ),
-        ),
-      ),
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                image: NetworkImage(
+                  'https://images.unsplash.com/photo-1597655601841-214a4cfe8b2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW91bnRhaW4lMjBzY2VuZXJ5fGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      TvCategoryText(title: 'Popular'),
+                      TvCategoryText(title: 'Film'),
+                      TvCategoryText(title: 'Cartoon'),
+                      TvCategoryText(title: 'Live'),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 300,
+                    height: 350,
+                    child: TvCarouselSlider(),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Popular',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: Colors.red),
+                  ),
+                  const Divider(
+                    indent: 400,
+                    endIndent: 400,
+                    color: Colors.red,
+                  ),
+                  FilmList(
+                    films: Film.films.where((film) => film.isPopular).toList(),
+                  ),
+                  Text(
+                    'Film',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: Colors.red),
+                  ),
+                  const Divider(
+                    indent: 400,
+                    endIndent: 400,
+                    color: Colors.red,
+                  ),
+                  FilmList(
+                    films: Film.films.where((film) => !film.isCartoon).toList(),
+                  ),
+                  Text(
+                    'Cartoon',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: Colors.red),
+                  ),
+                  const Divider(
+                    indent: 400,
+                    endIndent: 400,
+                    color: Colors.red,
+                  ),
+                  FilmList(
+                    films: Film.films.where((film) => film.isCartoon).toList(),
+                  ),
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tv_test/provider/appProvider.dart';
+import 'package:provider/provider.dart';
 
 class RoomServiceScreen extends StatelessWidget {
   const RoomServiceScreen({Key? key}) : super(key: key);
@@ -6,60 +8,89 @@ class RoomServiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-              'https://firebasestorage.googleapis.com/v0/b/twe-mobile.appspot.com/o/images%2F3NIEQB3SFVCMNHH6MHZ42FO6PA.webp?alt=media&token=10a0379a-7144-47f7-9289-2729846bc9b3',
+        body: Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.3), BlendMode.darken),
+              image: NetworkImage(
+                'https://firebasestorage.googleapis.com/v0/b/twe-mobile.appspot.com/o/images%2F3NIEQB3SFVCMNHH6MHZ42FO6PA.webp?alt=media&token=10a0379a-7144-47f7-9289-2729846bc9b3',
+              ),
+              fit: BoxFit.cover,
             ),
-            fit: BoxFit.cover,
           ),
+          height: 1080,
+          child: Consumer<AppProvider>(builder: (context, provider, child) {
+            return ListView(
+                padding: EdgeInsets.only(
+                  top: 130,
+                  bottom: 130,
+                ),
+                scrollDirection: Axis.horizontal,
+                children: [
+                  SizedBox(width: 15),
+                  if (provider.getListService.length > 0)
+                    ...provider.getListService
+                        .map(
+                          (e) => FlatButton(
+                            color: Colors.transparent,
+                            onPressed: () {
+                              // provider.setListDrink(e);
+                            },
+                            child: buildCard(
+                              e.image,
+                              e.foodName,
+                            ),
+                          ),
+                        )
+                        .toList()
+                ]);
+          }),
         ),
-        height: 1080,
-        child: ListView(
-            padding: EdgeInsets.only(
-              top: 130,
-              bottom: 130,
-            ),
-            scrollDirection: Axis.horizontal,
-            children: [
-              SizedBox(width: 12),
-              FlatButton(
-                color: Colors.transparent,
-                onPressed: () {},
-                child: buildCard(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScLHufeM5cwF6heJ0WZcge-usFbtuMBtUwyw&usqp=CAU',
-                    "Gọi lễ tân"),
+        Positioned(
+            bottom: 30,
+            right: 30,
+            child: Container(
+              height: 50,
+              width: 150,
+              child: FlatButton(
+                color: Colors.black45,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: BorderSide(width: 1, color: Colors.white)),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/confirm");
+                },
+                child: Text(
+                  "Tiếp theo",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              SizedBox(width: 12),
-              FlatButton(
-                color: Colors.transparent,
-                onPressed: () {},
-                child: buildCard(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhfDBcdLmQEnk5ooTCX6kRnRY1otall_MjgA&usqp=CAU',
-                    "Giặt quần áo"),
+            )),
+        Positioned(
+            bottom: 30,
+            right: 210,
+            child: Container(
+              height: 50,
+              width: 150,
+              child: FlatButton(
+                color: Colors.black45,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: BorderSide(width: 1, color: Colors.white)),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/confirm");
+                },
+                child: Text(
+                  "Thiết lập lại",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              SizedBox(width: 12),
-              FlatButton(
-                color: Colors.transparent,
-                onPressed: () {},
-                child: buildCard(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_4Q6444ub_Huk2o42ns_xEBKok0KEGsPuEg&usqp=CAU',
-                    "Dọn phòng"),
-              ),
-              SizedBox(width: 12),
-              FlatButton(
-                color: Colors.transparent,
-                onPressed: () {},
-                child: buildCard(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh8L0ykBhWkgUrfXPCpZKfg2XPfSsPWI4mCQ&usqp=CAU',
-                    "Sửa chữa"),
-              ),
-              SizedBox(width: 12),
-              SizedBox(width: 12),
-            ]),
-      ),
-    );
+            ))
+      ],
+    ));
   }
 
   Widget buildCard(String img, String food) => Container(
@@ -91,7 +122,7 @@ class RoomServiceScreen extends StatelessWidget {
                 width: 400,
                 height: 50,
                 child: Text(
-                  '\$100',
+                  '',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,

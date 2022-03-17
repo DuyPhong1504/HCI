@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tv_test/config/app_router.dart';
-
+import 'package:flutter_tv_test/provider/appProvider.dart';
+import 'package:provider/provider.dart';
 import 'screens/screens.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AppProvider()),
+      ],
+      child: const MyApp(),
+    ));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -29,17 +29,17 @@ class ServiceScreen extends StatelessWidget {
                   ServiceTab(
                     tabName: "FOOD",
                     imgUrl:
-                        "https://d1fd34dzzl09j.cloudfront.net/Images/CFACOM/Home%20Page%20Refresh/salad_desktop.jpg?h=425&w=535&la=en",
+                        "https://firebasestorage.googleapis.com/v0/b/social-app-831ac.appspot.com/o/salad_desktop.jpg?alt=media&token=bdf4d065-ba70-46a5-8feb-a9439cbdc719",
                   ),
                   ServiceTab(
                     tabName: "DRINKS",
                     imgUrl:
-                        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20191031-mojitos-three-ways-delish-ehg-2887-1584029660.jpg?crop=0.540xw:0.810xh;0.232xw,0.0745xh&resize=640:*",
+                        "https://firebasestorage.googleapis.com/v0/b/social-app-831ac.appspot.com/o/97046d1d75c0939ecad16.webp?alt=media&token=0ee9659b-f35b-4c47-a2ee-a9f8f2ac0648",
                   ),
                   ServiceTab(
                     tabName: "ROOM SERVICE",
                     imgUrl:
-                        "https://media.istockphoto.com/photos/all-that-you-need-waitress-in-uniform-delivering-tray-with-food-in-a-picture-id1209739507?k=20&m=1209739507&s=612x612&w=0&h=m_QaMqWdH2LuJ_3rfesJWklC8f_b9wBOK58vhkMJwDQ=",
+                        "https://firebasestorage.googleapis.com/v0/b/social-app-831ac.appspot.com/o/istockphoto-1209739507-612x612.jpg?alt=media&token=931e0164-86af-485f-a16a-0d80f20e1184",
                   ),
                 ],
               ),

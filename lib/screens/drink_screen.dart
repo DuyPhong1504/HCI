@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tv_test/provider/appProvider.dart';
+import 'package:provider/provider.dart';
 
 class DrinkScreen extends StatelessWidget {
   const DrinkScreen({Key? key}) : super(key: key);
@@ -10,7 +12,7 @@ class DrinkScreen extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               colorFilter: new ColorFilter.mode(
-                  Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                  Colors.black.withOpacity(0.3), BlendMode.darken),
               image: NetworkImage(
                 'https://firebasestorage.googleapis.com/v0/b/twe-mobile.appspot.com/o/images%2F3NIEQB3SFVCMNHH6MHZ42FO6PA.webp?alt=media&token=10a0379a-7144-47f7-9289-2729846bc9b3',
               ),
@@ -18,73 +20,77 @@ class DrinkScreen extends StatelessWidget {
             ),
           ),
           height: 1080,
-          child: Stack(
-            children: [
-              ListView(
-                  padding: EdgeInsets.only(
-                    top: 130,
-                    bottom: 130,
-                  ),
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    SizedBox(width: 15),
-                    FlatButton(
-                      color: Colors.transparent,
-                      onPressed: () {},
-                      child: buildCard(
-                          'https://www.troprockin.com/wp-content/uploads/2013/09/dirty-monkey-drink-recipe-cocktial.jpg',
-                          "Drink 1"),
+          child: Consumer<AppProvider>(builder: (context, provider, child) {
+            return Stack(
+              children: [
+                ListView(
+                    padding: EdgeInsets.only(
+                      top: 130,
+                      bottom: 130,
                     ),
-                    SizedBox(width: 12),
-                    FlatButton(
-                      color: Colors.transparent,
-                      onPressed: () {},
-                      child: buildCard(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCSAa05KpZgvWg3eVWMTLFB3SQS19CW2tFFg&usqp=CAU',
-                          "Drink 2"),
-                    ),
-                    SizedBox(width: 12),
-                    FlatButton(
-                      color: Colors.transparent,
-                      onPressed: () {},
-                      child: buildCard(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfroAWKq8LBbf04yX9SQz5WzFTFiAjNQ3znQ&usqp=CAU',
-                          "Drink 3"),
-                    ),
-                    SizedBox(width: 12),
-                    FlatButton(
-                      color: Colors.transparent,
-                      onPressed: () {},
-                      child: buildCard(
-                          'https://www.bakingbeauty.net/wp-content/uploads/2020/03/miami-vice-drink-3.jpg',
-                          "Drink 4"),
-                    ),
-                    SizedBox(width: 12),
-                  ]),
-              Positioned(
-                  bottom: 30,
-                  right: 30,
-                  child: Container(
-                    height: 50,
-                    width: 150,
-                    child: FlatButton(
-                      color: Colors.black45,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(width: 1, color: Colors.white)),
-                      onPressed: () {},
-                      child: Text(
-                        "Tiếp theo",
-                        style: TextStyle(color: Colors.white),
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      SizedBox(width: 15),
+                      if (provider.getListDrink.length > 0)
+                        ...provider.getListDrink
+                            .map(
+                              (e) => FlatButton(
+                                color: Colors.transparent,
+                                onPressed: () {
+                                  provider.setListDrink(e);
+                                },
+                                child: buildCard(e.image, e.foodName, e.count),
+                              ),
+                            )
+                            .toList()
+                    ]),
+                Positioned(
+                    bottom: 30,
+                    right: 30,
+                    child: Container(
+                      height: 50,
+                      width: 150,
+                      child: FlatButton(
+                        color: Colors.black45,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(width: 1, color: Colors.white)),
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/confirm");
+                        },
+                        child: Text(
+                          "Tiếp theo",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ))
-            ],
-          )),
+                    )),
+                Positioned(
+                    bottom: 30,
+                    right: 210,
+                    child: Container(
+                      height: 50,
+                      width: 150,
+                      child: FlatButton(
+                        color: Colors.black45,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(width: 1, color: Colors.white)),
+                        onPressed: () {
+                          provider.setListDrinkEmpty();
+                        },
+                        child: Text(
+                          "Thiết lập lại",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ))
+              ],
+            );
+          })),
     );
   }
 
-  Widget buildCard(String img, String food) => Container(
+  Widget buildCard(String img, String food, int count) => Container(
           // width: 400,
           // height: 400,
           child: Stack(
@@ -145,7 +151,7 @@ class DrinkScreen extends StatelessWidget {
                 width: 400,
                 height: 40,
                 child: Text(
-                  "x0",
+                  "x${count.toString()}",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
