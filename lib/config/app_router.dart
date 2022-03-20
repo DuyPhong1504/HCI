@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tv_test/screens/confirm_screen.dart';
 import 'package:flutter_tv_test/screens/event_detail_screen.dart';
+import 'package:flutter_tv_test/screens/room_infomation.dart';
 
 import '../screens/screens.dart';
 
@@ -29,6 +30,8 @@ class AppRouter {
         return TvScreen.route();
       case FilmDetail.routeName:
         return FilmDetail.route();
+      case RoomInfomation.routeName:
+        return RoomInfomation.route();
       case ConfirmScreen.routeName:
         return ConfirmScreen.route();
       case EventDetailScreen.routeName:

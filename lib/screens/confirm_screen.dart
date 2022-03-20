@@ -15,6 +15,21 @@ class ConfirmScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int total = 0;
+    context.read<AppProvider>().getListFood.map(
+      (food) {
+        if (food.count > 0) {
+          total = total + food.price;
+        }
+      },
+    ).toList();
+    context.read<AppProvider>().getListDrink.map(
+      (drink) {
+        if (drink.count > 0) {
+          total = total + drink.price;
+        }
+      },
+    ).toList();
     return Scaffold(
         body: Stack(
       children: [
@@ -38,7 +53,7 @@ class ConfirmScreen extends StatelessWidget {
               colorFilter: new ColorFilter.mode(
                   Colors.black.withOpacity(0.3), BlendMode.darken),
               image: NetworkImage(
-                'https://ak.picdn.net/shutterstock/videos/5332472/thumb/1.jpg',
+                'https://firebasestorage.googleapis.com/v0/b/twe-mobile.appspot.com/o/Voucher%2F1.webp?alt=media&token=3dbbd680-c707-49a6-be68-7a78152207c6',
               ),
               fit: BoxFit.cover,
             ),
@@ -206,7 +221,7 @@ class ConfirmScreen extends StatelessWidget {
                                     ),
                                     Container(
                                       child: Text(
-                                        "300.000 VMD",
+                                        total.toString() + ".000",
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
@@ -255,6 +270,31 @@ class ConfirmScreen extends StatelessWidget {
                                     BorderSide(width: 1, color: Colors.white)),
                             onPressed: () {
                               // Navigator.pushNamed(context, "/confirm");
+                              // context.read<AppProvider>().setListOrder(list);
+                              List<FoodModel> listOrder = [];
+                              int total = 0;
+                              context.read<AppProvider>().getListFood.map(
+                                (food) {
+                                  if (food.count > 0) {
+                                    listOrder.add(food);
+                                    total = total + food.price;
+                                  }
+                                },
+                              ).toList();
+                              context.read<AppProvider>().getListDrink.map(
+                                (drink) {
+                                  if (drink.count > 0) {
+                                    listOrder.add(drink);
+                                    total = total + drink.price;
+                                  }
+                                },
+                              ).toList();
+
+                              context.read<AppProvider>().setListOrderHistory(
+                                  listOrder, "Chờ xác nhận", total);
+                              context.read<AppProvider>().setListFoodEmpty();
+                              context.read<AppProvider>().setListDrinkEmpty();
+                              Navigator.pushNamed(context, "/room-infomation");
                             },
                             child: Text(
                               "Xác nhân",

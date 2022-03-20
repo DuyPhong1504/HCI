@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv_test/models/food_model.dart';
+import 'package:flutter_tv_test/models/order_model.dart';
 import 'package:flutter_tv_test/screens/food_screen.dart';
 
 class AppProvider with ChangeNotifier {
@@ -93,6 +94,21 @@ class AppProvider with ChangeNotifier {
         image:
             "https://firebasestorage.googleapis.com/v0/b/social-app-831ac.appspot.com/o/8c404dd1e53092454c6d9e5a411b223d.jpg?alt=media&token=6d682ee0-a1bd-43ea-98ff-aae45187015c"),
   ];
+  List<FoodModel> listOrder = [];
+
+  List<OrderModel> listOrderHistory = [];
+
+  void setListOrderHistory(List<FoodModel> list, String status, int total) {
+    OrderModel order =
+        OrderModel(listOrder: list, status: status, total: total);
+    listOrderHistory.add(order);
+    notifyListeners();
+  }
+
+  void setListOrder(List<FoodModel> list) {
+    listOrder = list;
+    notifyListeners();
+  }
 
   void setListFood(FoodModel food) {
     for (var item in listFood) {
@@ -127,6 +143,8 @@ class AppProvider with ChangeNotifier {
   }
 
   List<FoodModel> get getListFood => listFood;
+  List<FoodModel> get getListOrder => listOrder;
+  List<OrderModel> get getListOrderHistory => listOrderHistory;
   List<FoodModel> get getListDrink => listDrink;
   List<FoodModel> get getListService => listService;
 }
